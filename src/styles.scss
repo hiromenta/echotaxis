@@ -2,16 +2,24 @@
 
 // Variables will be overwritten by themes.service.ts
 :root {
-    --primary: #0e361c;
-    --secondary: #7c9060;
-    --accent: #446c48;
-    --accentLight: #9fbc8d;
-    --light: #c6caab;
-    --dark: #042514;
+    --primary: #2b0457;
+    --secondary: #5409a9;
+    --accent: #840808;
+    --accentLight: #e32d2d;
+    --light: #9a48f8;
+    --dark: #010001;
 
     --white: #e7e7e7;
     --black: #111;
     --grey: #7c7c7c;
+
+    --blue: #2e0aaf;
+    --dark-blue: #060216;
+    --yellow: #c89e15;
+    --dark-yellow: #130f01;
+    --green: #019d01;
+    --dark-green: #001100;
+
     --danger: #721f2a;
     --success: #3d612e;
     --warning: #bda32d;

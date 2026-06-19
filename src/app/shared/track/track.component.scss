@@ -1,0 +1,25 @@
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    canvas {
+        border-radius: 5px;
+        cursor: pointer;
+
+        &.blue {
+            border: 2px solid var(--blue);
+        }
+        &.yellow {
+            border: 2px solid var(--yellow);
+        }
+        &.green {
+            border: 2px solid var(--green);
+        }
+    }
+}
+
+input {
+    display: none;
+}

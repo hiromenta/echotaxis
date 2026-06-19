@@ -51,6 +51,10 @@
                 </div>
             }
 
+            @if (control.type === getControlType().FILE) {
+                <input #fileInput (change)="updateValue(control, fileInput)" (input)="updateValue(control, fileInput)" type="file" [required]="control.required" [id]="control.selector" accept="audio/*">
+            }
+
             @if (control.type === getControlType().SPACER) {
                 <div><br></div>
             }

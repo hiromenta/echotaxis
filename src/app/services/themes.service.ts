@@ -17,7 +17,6 @@ export class ThemesService {
 
     getThemes(theme?: Themes): Observable<{ [key: string]: Theme } | Theme> {
         return this._configService.getThemesConfig().pipe(map((themes) => {
-            debugger
             if (theme) {
                 return themes[theme];
             }
@@ -27,7 +26,6 @@ export class ThemesService {
     }
 
     changeTheme(theme: Themes): Observable<Theme> {
-        debugger
         return this._changeTheme(theme);
     }
 
@@ -36,7 +34,6 @@ export class ThemesService {
             if (!themes[theme]) {
                 theme = Themes.DARK;
             }
-            debugger
 
             for (const property of Object.entries(themes[theme])) {
                 document.documentElement.style.setProperty('--' + property[0], property[1]);
@@ -52,7 +49,6 @@ export class ThemesService {
     }
 
     private _getThemeFromLocalStorage(): Themes {
-        debugger
         if (localStorage.getItem('theme')) {
             return (localStorage.getItem('theme')!) as Themes;
         }

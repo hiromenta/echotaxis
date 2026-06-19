@@ -8,11 +8,11 @@
         "dark": "#142c14"
     },
     "dark": {
-        "primary": "#0e361c",
-        "secondary": "#7c9060",
-        "accent": "#446c48",
-        "accentLight": "#9fbc8d",
-        "light": "#c6caab",
-        "dark": "#042514"
+        "primary": "#2b0457",
+        "secondary": "#5409a9",
+        "accent": "#840808",
+        "accentLight": "#e32d2d",
+        "light": "#9a48f8",
+        "dark": "#010001"
     }
 }

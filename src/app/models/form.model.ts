@@ -6,7 +6,8 @@ export enum ControlType {
     EMAIL,
     RADIO,
     CHECKBOX,
-    COLOR
+    COLOR,
+    FILE
 }
 
 export interface Control {
