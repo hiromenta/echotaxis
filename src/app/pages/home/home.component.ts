@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter } from "@angular/core";
 import { TrackComponent } from "../../shared/track/track.component";
 
 @Component({
@@ -8,4 +8,27 @@ import { TrackComponent } from "../../shared/track/track.component";
     standalone: true,
     imports: [TrackComponent]
 })
-export class HomeComponent {}
+export class HomeComponent {
+
+    pauseBase = new EventEmitter<void>();
+    pauseSample = new EventEmitter<void>();
+    pauseResult = new EventEmitter<void>();
+
+    played(track: 'base' | 'sample' | 'result') {
+        switch (track) {
+            case 'base':
+                this.pauseSample.emit();
+                this.pauseResult.emit();
+                break;
+            case 'sample':
+                this.pauseBase.emit();
+                this.pauseResult.emit();
+                break;
+            case 'result':
+                this.pauseSample.emit();
+                this.pauseSample.emit();
+                break;
+        }
+    }
+
+}

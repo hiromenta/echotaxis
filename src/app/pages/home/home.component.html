@@ -1,3 +1,9 @@
 <div class="track">
-    <my-track [color]="'green'"></my-track>
+    <my-track [color]="'blue'" [pausePlayer]="pauseBase" (audioPlayed)="played('base')"></my-track>
+</div>
+<div class="track">
+    <my-track [color]="'yellow'" [pausePlayer]="pauseSample" (audioPlayed)="played('sample')"></my-track>
+</div>
+<div class="track">
+    <my-track [color]="'green'" [pausePlayer]="pauseResult" (audioPlayed)="played('result')" [readonly]="true"></my-track>
 </div>

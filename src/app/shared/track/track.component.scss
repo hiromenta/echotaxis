@@ -9,6 +9,10 @@
         height: 100%;
         color: var(--dark);
         border-radius: 5px 0 0 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
 
         &.blue {
             background-color: var(--blue);
@@ -18,6 +22,18 @@
         }
         &.green {
             background-color: var(--green);
+        }
+
+        svg {
+            width: 4rem;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        &.readonly {
+            svg {
+                cursor: alias;
+            }
         }
     }
 

@@ -1,6 +1,24 @@
 <div class="track-holder">
-    <div [class]="'player ' + color" (click)="toggleAudio()"></div>
-    <canvas #trackCanvas (click)="currentFile ? null : selectAudio()" [class]="color" [class.no-file]="!currentFile"></canvas>
+    @if (readonly) {
+        <div [class]="'player readonly ' + color"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M509.9 452.2C503.5 479.6 482.7 495 454.8 500.2C430.3 504.7 409.9 505.8 390.3 490C366.4 469.9 366.1 436.6 387.6 415.6C404.6 399.4 428.5 396.1 464.4 389.8C470.4 388.7 475.6 387.3 480 382.4C486.4 375.2 484.4 378.3 484.4 219.2C484.4 208 478.9 204.9 467.4 206.9C459.2 208.3 281.7 241.5 281.7 241.5C271.5 243.7 268.3 246.7 268.3 258.2C268.3 492.9 269.4 482.1 265.8 497.7C261.6 515.9 250.4 529.6 235.6 537.2C218.8 546.5 188.4 550.6 172.2 547.6C129 539.5 113.8 489.6 143.1 461C160.1 444.8 184 441.5 219.9 435.2C225.9 434.1 231.1 432.7 235.5 427.8C245.6 416.3 237.3 171.2 240.7 157.6C241.5 152.4 243.7 148 247.8 144.7C252 141.2 259.6 139.2 261.2 139.2C465.2 101 490.1 96.1 493.6 96.1C505.1 95.3 511.7 102.1 511.7 113.7C511.9 458.2 512.8 439.7 509.9 452.2z"/></svg></div>
+    } @else {
+        @if (currentFile) {
+            <div [class]="'player ' + color">
+                @if (!isTrackPlaying()) {
+                    <div (click)="toggleAudio()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"/></svg></div>
+                } @else {
+                    <div (click)="toggleAudio()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M176 96C149.5 96 128 117.5 128 144L128 496C128 522.5 149.5 544 176 544L240 544C266.5 544 288 522.5 288 496L288 144C288 117.5 266.5 96 240 96L176 96zM400 96C373.5 96 352 117.5 352 144L352 496C352 522.5 373.5 544 400 544L464 544C490.5 544 512 522.5 512 496L512 144C512 117.5 490.5 96 464 96L400 96z"/></svg></div>
+                }
+                <div (click)="stopAudio()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M160 96L480 96C515.3 96 544 124.7 544 160L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 160C96 124.7 124.7 96 160 96z"/></svg></div>
+            </div>
+        } @else {
+            <div [class]="'player ' + color">
+                <div (click)="selectAudio()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M128 128C128 92.7 156.7 64 192 64L341.5 64C358.5 64 374.8 70.7 386.8 82.7L493.3 189.3C505.3 201.3 512 217.6 512 234.6L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 128zM336 122.5L336 216C336 229.3 346.7 240 360 240L453.5 240L336 122.5zM389.8 307.7C380.7 301.4 368.3 303.6 362 312.7C355.7 321.8 357.9 334.2 367 340.5C390.9 357.2 406.4 384.8 406.4 416C406.4 447.2 390.8 474.9 367 491.5C357.9 497.8 355.7 510.3 362 519.3C368.3 528.3 380.8 530.6 389.8 524.3C423.9 500.5 446.4 460.8 446.4 416C446.4 371.2 424 331.5 389.8 307.7zM208 376C199.2 376 192 383.2 192 392L192 440C192 448.8 199.2 456 208 456L232 456L259.2 490C262.2 493.8 266.8 496 271.7 496L272 496C280.8 496 288 488.8 288 480L288 352C288 343.2 280.8 336 272 336L271.7 336C266.8 336 262.2 338.2 259.2 342L232 376L208 376zM336 448.2C336 458.9 346.5 466.4 354.9 459.8C367.8 449.5 376 433.7 376 416C376 398.3 367.8 382.5 354.9 372.2C346.5 365.5 336 373.1 336 383.8L336 448.3z"/></svg></div>
+            </div>
+        }
+    }
+
+    <canvas #trackCanvas (click)="currentFile ? jumpTime($event) : selectAudio()" [class]="color" [class.no-file]="!currentFile && !readonly"></canvas>
 </div>
 
 <canvas #hiddenCanvas class="hidden"></canvas>

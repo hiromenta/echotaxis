@@ -13,8 +13,11 @@ export class TrackComponent implements AfterViewInit {
     @ViewChild('audioFile') audioFile?: ElementRef;
 
     @Output() fileSelected: EventEmitter<{ file: File; data: Float32Array<ArrayBuffer> }> = new EventEmitter();
+    @Output() audioPlayed: EventEmitter<void> = new EventEmitter();
 
     @Input() color: 'blue' | 'yellow' | 'green' = 'blue';
+    @Input() pausePlayer?: EventEmitter<void>;
+    @Input() readonly = false;
 
     trackWidth?: number;
     trackHeight?: number;
@@ -62,6 +65,10 @@ export class TrackComponent implements AfterViewInit {
             const url = URL.createObjectURL(file);
             this.audio.src = url;
 
+            this.pausePlayer?.subscribe(() => {
+                this.audio.pause();
+            });
+
             const audioContext = new AudioContext();
 
             const arrayBuffer = await file.arrayBuffer();
@@ -91,11 +98,22 @@ export class TrackComponent implements AfterViewInit {
         });
     }
 
+    isTrackPlaying() {
+        return !this.audio.paused;
+    }
+
+    jumpTime(event: MouseEvent) {
+        const trackPosition = event.offsetX;
+        this.audio.currentTime = this._trackToTime(trackPosition);
+    }
+
     private _timeToTrack(time: number) {
         return time * (this.trackWidth || 1) / this.audio.duration;
     }
 
-    private _trackToTime(track: number) {}
+    private _trackToTime(track: number) {
+        return track * this.audio.duration / (this.trackWidth || 1);
+    }
 
     toggleAudio() {
         if (!this.audio.src) {
@@ -104,6 +122,7 @@ export class TrackComponent implements AfterViewInit {
 
         if (this.audio.paused) {
             this.audio.play();
+            this.audioPlayed.next();
         } else {
             this.audio.pause();
         }
@@ -123,6 +142,10 @@ export class TrackComponent implements AfterViewInit {
     }
 
     selectAudio() {
+        if (this.readonly) {
+            return;
+        }
+
         (this.audioFile?.nativeElement as HTMLInputElement)?.click();
     }
 
