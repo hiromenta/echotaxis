@@ -1,5 +1,7 @@
-<div>
-    <canvas #trackCanvas (click)="selectAudio()" [class]="color"></canvas>
+<div class="track-holder">
+    <div [class]="'player ' + color" (click)="toggleAudio()"></div>
+    <canvas #trackCanvas (click)="currentFile ? null : selectAudio()" [class]="color" [class.no-file]="!currentFile"></canvas>
 </div>
 
+<canvas #hiddenCanvas class="hidden"></canvas>
 <input type="file" #audioFile accept="audio/*">

@@ -1,12 +1,34 @@
-div {
+.track-holder {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-top: 0.5rem;
+    width: 100%;
+    height: 25vh;
+
+    .player {
+        width: 5%;
+        height: 100%;
+        color: var(--dark);
+        border-radius: 5px 0 0 5px;
+
+        &.blue {
+            background-color: var(--blue);
+        }
+        &.yellow {
+            background-color: var(--yellow);
+        }
+        &.green {
+            background-color: var(--green);
+        }
+    }
 
     canvas {
-        border-radius: 5px;
-        cursor: pointer;
+        width: 95%;
+        height: 100%;
+        border-radius: 0 5px 5px 0;
+        
+        &.no-file {
+            cursor: pointer;
+        }
 
         &.blue {
             border: 2px solid var(--blue);
@@ -18,6 +40,10 @@ div {
             border: 2px solid var(--green);
         }
     }
+}
+
+canvas.hidden {
+    display: none;
 }
 
 input {
