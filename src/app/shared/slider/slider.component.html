@@ -1,0 +1,3 @@
+<div [class]="'slider ' + color" (mousedown)="startTracking()" (click)="change($event, true)" (mousemove)="change($event)" #slider>
+    <div [class]="'ball ' + color"></div>
+</div>

@@ -1,0 +1,38 @@
+.slider {
+    height: 0.5rem;
+    padding: 0.5rem 0;
+    border-radius: 15px;
+    position: relative;
+
+    &.blue {
+        background-color: var(--dark-blue);
+    }
+    &.yellow {
+        background-color: var(--dark-yellow);
+    }
+    &.green {
+        background-color: var(--dark-green);
+    }
+
+    .ball {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        &.blue {
+            background-color: var(--blue);
+            border: 2px solid var(--dark-blue);
+        }
+        &.yellow {
+            background-color: var(--yellow);
+            border: 2px solid var(--dark-yellow);
+        }
+        &.green {
+            background-color: var(--green);
+            border: 2px solid var(--dark-green);
+        }
+    }
+}

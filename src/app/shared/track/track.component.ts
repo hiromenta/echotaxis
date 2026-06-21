@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from "@angular/core";
+import { SliderComponent } from "../slider/slider.component";
 
 @Component({
     selector: 'my-track',
     templateUrl: './track.component.html',
     styleUrls: ['./track.component.scss'],
-    standalone: true
+    standalone: true,
+    imports: [SliderComponent]
 })
 export class TrackComponent implements AfterViewInit {
 
@@ -90,8 +92,12 @@ export class TrackComponent implements AfterViewInit {
         return this.audio.volume * 100;
     }
 
-    setVolume(event: Event) {
-        this.audio.volume = (+((event.target as HTMLInputElement)?.value || 1) / 100);
+    setVolume(event: Event | number) {
+        if (typeof event === 'number') {
+            this.audio.volume = event / 100;
+        } else {
+            this.audio.volume = (+((event.target as HTMLInputElement)?.value || 1) / 100);
+        }
     }
 
     private _setupCanvas() {
